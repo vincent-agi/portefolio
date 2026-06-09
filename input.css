@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    scroll-behavior: smooth;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  }
+
+  body {
+    @apply bg-ink-950 text-slate-200 font-display antialiased;
+    text-rendering: optimizeSpeed;
+  }
+
+  ::selection {
+    @apply bg-signal-400 text-ink-900;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-signal-400 outline-offset-2;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Navigation */
+  .nav-link {
+    @apply relative text-slate-400 text-sm font-medium tracking-wide transition-colors duration-200
+           hover:text-signal-400 focus-visible:text-signal-400;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-px bg-signal-400 transition-all duration-300;
+  }
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  /* Section label */
+  .section-label {
+    @apply inline-flex items-center gap-2 text-signal-400 text-xs font-mono font-semibold
+           tracking-widest uppercase mb-3;
+  }
+  .section-label::before {
+    content: '';
+    @apply block w-4 h-px bg-signal-400;
+  }
+
+  /* Skill badge */
+  .skill-badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded text-2xs font-mono font-medium
+           bg-signal-900/60 text-signal-300 border border-signal-800/50
+           transition-all duration-200 hover:bg-signal-400/10 hover:border-signal-400/40;
+  }
+
+  /* Skill badge ember variant */
+  .skill-badge-ember {
+    @apply inline-flex items-center px-2.5 py-1 rounded text-2xs font-mono font-medium
+           bg-ember-500/10 text-ember-400 border border-ember-500/20;
+  }
+
+  /* Project / experience card */
+  .card {
+    @apply bg-ink-800/60 border border-white/5 rounded-xl p-6
+           shadow-card backdrop-blur-sm
+           transition-all duration-300 ease-expo-out
+           hover:shadow-card-hover hover:border-signal-800/40 hover:-translate-y-0.5;
+  }
+
+  /* Timeline line */
+  .timeline-line {
+    @apply absolute left-0 top-2 bottom-0 w-px bg-gradient-to-b from-signal-400 via-signal-800 to-transparent;
+  }
+
+  /* CTA Button */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
+           bg-signal-400 text-ink-950 font-semibold text-sm
+           transition-all duration-200 hover:bg-signal-300
+           shadow-signal-sm hover:shadow-signal
+           focus-visible:ring-2 focus-visible:ring-signal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
+           border border-white/10 text-slate-300 font-medium text-sm
+           transition-all duration-200 hover:border-signal-400/40 hover:text-signal-400 hover:bg-signal-400/5
+           focus-visible:ring-2 focus-visible:ring-signal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-signal-300 via-signal-400 to-signal-200 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-warm {
+    @apply bg-gradient-to-r from-signal-400 to-ember-400 bg-clip-text text-transparent;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(0, 200, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 200, 255, 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+  }
+
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+
+  /* Scrollbar styling */
+  .scrollbar-thin::-webkit-scrollbar { width: 4px; }
+  .scrollbar-thin::-webkit-scrollbar-track { @apply bg-ink-800; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { @apply bg-signal-800 rounded-full; }
+}

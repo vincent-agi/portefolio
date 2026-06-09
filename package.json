@@ -1,0 +1,13 @@
+{
+  "name": "vincent-agi-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio & CV de Vincent AGI – Développeur Fullstack Angular/.NET/DevOps",
+  "scripts": {
+    "dev": "tailwindcss -i ./input.css -o ./dist/output.css --watch",
+    "build": "tailwindcss -i ./input.css -o ./dist/output.css --minify",
+    "start": "npx serve ."
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
